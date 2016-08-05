@@ -2,18 +2,19 @@ import os.path
 
 def createFiles(stack1, stack2, stack3, player):
   'produce the long list of files'
-  if player == 2:
-    player = 1
-  else:
-    player = 2
-  if writeFile(stack1, stack2, stack3, player):
-    for x in range(1, 3):
-      if stack1 >= x:
-        createFiles(stack1 - x, stack2, stack3, player)
-      if stack2 >= x:
-        createFiles(stack1, stack2 - x, stack3, player)
-      if stack3 >= x:
-        createFiles(stack1, stack2, stack3 - x, player)
+  if (stack1 != 0 or stack2 != 0 or stack3 != 0):
+    if player == 2:
+      player = 1
+    else:
+      player = 2
+    if writeFile(stack1, stack2, stack3, player):
+      for x in range(1, 3):
+        if stack1 >= x:
+          createFiles(stack1 - x, stack2, stack3, player)
+        if stack2 >= x:
+          createFiles(stack1, stack2 - x, stack3, player)
+        if stack3 >= x:
+          createFiles(stack1, stack2, stack3 - x, player)
 
 def writeFile(stack1, stack2, stack3, player):
   'print out the single file'
